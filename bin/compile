@@ -60,6 +60,8 @@ esac
 echo "-----> CL_WEBSERVER: $CL_WEBSERVER"
 
 case $CL_WEBSERVER in
+  ningle)
+    ;;
   hunchentoot)
     ;;
   aserve)
