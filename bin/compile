@@ -97,6 +97,10 @@ case $CL_WEBSERVER in
 esac
 
 echo "-----> Installing $CL_IMPL"
+if [ -d $CL_DIR ]; then
+    rm -rf $CL_DIR
+fi
+
 if [ ! -d $CL_DIR ]; then
     echo "-----> Fetching $CL_IMPL"
     mkdir -p $CL_DIR  && curl $CL_PACKAGE -s -o -  | $DECOMPRESS
