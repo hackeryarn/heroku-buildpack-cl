@@ -118,4 +118,8 @@ case $CL_IMPL in
 esac
 echo "-----> Build finished"
 
+mkdir ~/quicklisp
+mkdir ~/quicklisp/local-projects
+git clone https://github.com/tssund93/web-util ~/quicklisp/local-projects
+
 chmod a+x $BUILD_DIR/lispapp
