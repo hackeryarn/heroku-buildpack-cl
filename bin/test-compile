@@ -7,7 +7,8 @@
 # run in app repository directory (eg ~/repos/heroku-cl-example/)
 
 rm -rf /tmp/build
-git clone -l . /tmp/build
+# git clone -l . /tmp/build
+cp -r ./ /tmp/build
 
 # comment out this section to reuse the cache
 #$rm -rf /tmp/cache

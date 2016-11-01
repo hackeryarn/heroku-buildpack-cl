@@ -96,7 +96,7 @@ case $CL_WEBSERVER in
     exit 1
 esac
 
-echo "-----> Installing $CL_IMPL"
+echo "-----> Installing $CL_IMPL to $CL_DIR"
 if [ ! -d $CL_DIR ]; then
     echo "-----> Fetching $CL_IMPL"
     mkdir -p $CL_DIR  && curl $CL_PACKAGE -s -o -  | $DECOMPRESS
@@ -117,9 +117,5 @@ case $CL_IMPL in
   ccl) $CCL_DEFAULT_DIRECTORY/scripts/ccl64 -l "$BUILDPACK_DIR/setup/compile.lisp";;
 esac
 echo "-----> Build finished"
-
-mkdir ~/quicklisp
-mkdir ~/quicklisp/local-projects
-git clone https://github.com/tssund93/web-util ~/quicklisp/local-projects
 
 chmod a+x $BUILD_DIR/lispapp
