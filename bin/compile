@@ -64,6 +64,8 @@ case $CL_WEBSERVER in
     ;;
   hunchentoot)
     ;;
+  caveman2)
+    ;;
   aserve)
     # setting up paths for building
     echo "-----> Getting patched versions of libraries"
