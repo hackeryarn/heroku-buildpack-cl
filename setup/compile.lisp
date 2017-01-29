@@ -23,7 +23,7 @@
 
 (require :asdf)
 
-(let ((ql-setup (make-pathname :directory (append *cache-dir* '("quicklisp")) :defaults "setup.lisp")))
+(let ((ql-setup (make-pathname :directory (append *build-dir* '("quicklisp")) :defaults "setup.lisp")))
   (if (probe-file ql-setup)
       (load ql-setup)
       (progn
@@ -41,7 +41,7 @@
       ;;; several systems in there, because we are using versions that are
       ;;; different from those in Quicklisp. (update: Can't just load the files apparently,
       ;;; have to add dirs to asdf:*central-registry*.  Blah.
-            (let* ((asds (directory (make-pathname :directory  (append *cache-dir* '( "repos" :wild-inferiors))
+            (let* ((asds (directory (make-pathname :directory  (append *build-dir* '( "repos" :wild-inferiors))
                                                    :name :wild
                                                    :type "asd")))
                    (directories (remove-duplicates (mapcar #'pathname-directory asds) :test #'equal)))
@@ -54,6 +54,7 @@
 ;;; Default toplevel, app can redefine.
 (defun heroku-toplevel ()
   (let ((port (parse-integer (heroku-getenv "PORT"))))
+    (initialize-application)
     (format t "Listening on port ~A~%" port)
     (ecase *cl-webserver*
       (caveman2 (funcall (symbol-function (find-symbol "START" (find-package "WRITING-SITE")))
