@@ -34,6 +34,7 @@
 (ecase *cl-webserver*
   (ningle (ql:quickload "ningle"))
   (hunchentoot (ql:quickload "hunchentoot"))
+  (caveman2 (ql:quickload "caveman2"))
   (aserve (progn
             (asdf:clear-system "acl-compat")
       ;;; Load all .asd files in the repos subdirectory.  The compile script puts
@@ -55,6 +56,8 @@
   (let ((port (parse-integer (heroku-getenv "PORT"))))
     (format t "Listening on port ~A~%" port)
     (ecase *cl-webserver*
+      (caveman2 (funcall (symbol-function (find-symbol "START" (find-package "WRITING-SITE")))
+                         :port port))
       (ningle (funcall (symbol-function (find-symbol "START" (find-package "NINGLE")))))
                        ;; (funcall 'make-instance (find-symbol "EASY-ACCEPTOR" (find-package "NINGLE")) :port port)))
       (hunchentoot (funcall (symbol-function (find-symbol "START" (find-package "HUNCHENTOOT")))
