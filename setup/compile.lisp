@@ -28,8 +28,7 @@
       (load ql-setup)
       (progn
         (load (make-pathname :directory (append *buildpack-dir* '("lib")) :defaults "quicklisp.lisp"))
-        (funcall (symbol-function (find-symbol "INSTALL" (find-package "QUICKLISP-QUICKSTART")))
-                 :path (make-pathname :directory "/app/")))))
+        (funcall (symbol-function (find-symbol "INSTALL" (find-package "QUICKLISP-QUICKSTART")))))))
 
 (ecase *cl-webserver*
   (ningle (ql:quickload "ningle"))
