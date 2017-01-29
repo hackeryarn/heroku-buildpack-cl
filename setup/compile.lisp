@@ -57,8 +57,10 @@
     (initialize-application)
     (format t "Listening on port ~A~%" port)
     (ecase *cl-webserver*
-      (caveman2 (funcall (symbol-function (find-symbol "START" (find-package "WRITING-SITE")))
-                         :port port))
+      (caveman2
+       (ql:quickload "lack")
+       (funcall (symbol-function (find-symbol "START" (find-package "WRITING-SITE")))
+                :port port))
       (ningle (funcall (symbol-function (find-symbol "START" (find-package "NINGLE")))))
                        ;; (funcall 'make-instance (find-symbol "EASY-ACCEPTOR" (find-package "NINGLE")) :port port)))
       (hunchentoot (funcall (symbol-function (find-symbol "START" (find-package "HUNCHENTOOT")))
