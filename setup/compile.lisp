@@ -23,6 +23,12 @@
 
 (require :asdf)
 
+(format t "Build directory: ~a
+Cache directory: ~a
+Buildpack directory: ~a~%"
+        *build-dir*
+        *cache-dir*
+        *buildpack-dir*)
 (let ((ql-setup (make-pathname :directory (append *build-dir* '("quicklisp")) :defaults "setup.lisp")))
   (if (probe-file ql-setup)
       (load ql-setup)
