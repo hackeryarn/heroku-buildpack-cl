@@ -23,7 +23,7 @@
 
 (require :asdf)
 
-(let ((ql-setup (make-pathname :directory (append *cache-dir* '("quicklisp")) :defaults "setup.lisp")))
+(let ((ql-setup (make-pathname :directory (append #P"~/" '("quicklisp")) :defaults "setup.lisp")))
   (if (probe-file ql-setup)
       (load ql-setup)
       (progn
