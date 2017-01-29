@@ -29,7 +29,7 @@
       (progn
         (load (make-pathname :directory (append *buildpack-dir* '("lib")) :defaults "quicklisp.lisp"))
         (funcall (symbol-function (find-symbol "INSTALL" (find-package "QUICKLISP-QUICKSTART")))
-                 :path (make-pathname :directory (pathname-directory ql-setup))))))
+                 :path (make-pathname :directory "~/")))))
 
 (ecase *cl-webserver*
   (ningle (ql:quickload "ningle"))
@@ -57,10 +57,8 @@
     (initialize-application)
     (format t "Listening on port ~A~%" port)
     (ecase *cl-webserver*
-      (caveman2
-       (ql:quickload "lack")
-       (funcall (symbol-function (find-symbol "START" (find-package "WRITING-SITE")))
-                :port port))
+      (caveman2 (funcall (symbol-function (find-symbol "START" (find-package "WRITING-SITE")))
+                         :port port))
       (ningle (funcall (symbol-function (find-symbol "START" (find-package "NINGLE")))))
                        ;; (funcall 'make-instance (find-symbol "EASY-ACCEPTOR" (find-package "NINGLE")) :port port)))
       (hunchentoot (funcall (symbol-function (find-symbol "START" (find-package "HUNCHENTOOT")))
