@@ -23,13 +23,13 @@
 
 (require :asdf)
 
-(let ((ql-setup (make-pathname :directory (append '(:absolute "~/") '("quicklisp")) :defaults "setup.lisp")))
+(let ((ql-setup (make-pathname :directory (append '(:absolute "/app/") '("quicklisp")) :defaults "setup.lisp")))
   (if (probe-file ql-setup)
       (load ql-setup)
       (progn
         (load (make-pathname :directory (append *buildpack-dir* '("lib")) :defaults "quicklisp.lisp"))
         (funcall (symbol-function (find-symbol "INSTALL" (find-package "QUICKLISP-QUICKSTART")))
-                 :path (make-pathname :directory "~/")))))
+                 :path (make-pathname :directory "/app/")))))
 
 (ecase *cl-webserver*
   (ningle (ql:quickload "ningle"))
