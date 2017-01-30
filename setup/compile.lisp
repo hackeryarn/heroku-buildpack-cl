@@ -34,7 +34,7 @@
 (ecase *cl-webserver*
   (ningle (ql:quickload "ningle"))
   (hunchentoot (ql:quickload "hunchentoot"))
-  (caveman2 (ql:quickload "caveman2")
+  (caveman2 (ql:quickload "caveman2"))
   (aserve (progn
             (asdf:clear-system "acl-compat")
       ;;; Load all .asd files in the repos subdirectory.  The compile script puts
