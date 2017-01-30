@@ -23,13 +23,13 @@
 
 (require :asdf)
 
-(let ((ql-setup (make-pathname :directory (append (list :absolute *build-dir*) '("quicklisp")) :defaults "setup.lisp")))
+(let ((ql-setup (make-pathname :directory (append *cache-dir* '("quicklisp")) :defaults "setup.lisp")))
   (if (probe-file ql-setup)
       (load ql-setup)
       (progn
         (load (make-pathname :directory (append *buildpack-dir* '("lib")) :defaults "quicklisp.lisp"))
         (funcall (symbol-function (find-symbol "INSTALL" (find-package "QUICKLISP-QUICKSTART")))
-                 :path *build-dir*))))
+                 :path (make-pathname :directory (pathname-directory ql-setup))))))
 
 (ecase *cl-webserver*
   (ningle (ql:quickload "ningle"))
@@ -60,7 +60,7 @@
       (caveman2 (funcall (symbol-function (find-symbol "START" (find-package "WRITING-SITE")))
                          :port port))
       (ningle (funcall (symbol-function (find-symbol "START" (find-package "NINGLE")))))
-                       ;; (funcall 'make-instance (find-symbol "EASY-ACCEPTOR" (find-package "NINGLE")) :port port)))
+      ;; (funcall 'make-instance (find-symbol "EASY-ACCEPTOR" (find-package "NINGLE")) :port port)))
       (hunchentoot (funcall (symbol-function (find-symbol "START" (find-package "HUNCHENTOOT")))
                             (funcall 'make-instance (find-symbol "EASY-ACCEPTOR" (find-package "HUNCHENTOOT")) :port port)))
       (aserve (funcall (symbol-function (find-symbol "START" (find-package "NET.ASERVE"))) :port port)))
