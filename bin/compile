@@ -118,9 +118,10 @@ case $CL_IMPL in
   sbcl) sh $CL_DIR/sbcl-1.3.10-x86-64-linux/run-sbcl.sh --script "$BUILDPACK_DIR/setup/compile.lisp";;
   ccl) $CCL_DEFAULT_DIRECTORY/scripts/ccl64 -l "$BUILDPACK_DIR/setup/compile.lisp";;
 esac
+return_code = $?
+
 echo "-----> Build finished"
 
-return_code = $?
 if [ $return_code != 0 ]; then
     printf "Build error: %d" $return_code
     exit $return_code
