@@ -44,7 +44,7 @@ case $CL_IMPL in
   sbcl)
     S3_BUCKET="sbcl-heroku"
     CL_PACKAGE="http://prdownloads.sourceforge.net/sbcl/sbcl-2.1.2-x86-64-linux-binary.tar.bz2"
-    DECOMPRESS="tar jxvf - -C $CL_DIR"
+    DECOMPRESS="tar xvf - -C $CL_DIR"
     ;;
   ccl)
     S3_BUCKET="cl-heroku"
