@@ -43,7 +43,7 @@ echo "-----> CL_IMPL: $CL_IMPL"
 case $CL_IMPL in
   sbcl)
     S3_BUCKET="sbcl-heroku"
-    CL_PACKAGE="http://pilotfiber.dl.sourceforge.net/project/sbcl/sbcl/1.3.10/sbcl-1.3.10-x86-64-linux-binary.tar.bz2"
+    CL_PACKAGE="http://prdownloads.sourceforge.net/sbcl/sbcl-2.1.2-x86-64-linux-binary.tar.bz2"
     DECOMPRESS="tar jxvf - -C $CL_DIR"
     ;;
   ccl)
