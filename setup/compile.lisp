@@ -63,7 +63,8 @@
       ;; (funcall 'make-instance (find-symbol "EASY-ACCEPTOR" (find-package "NINGLE")) :port port)))
       (hunchentoot (funcall (symbol-function (find-symbol "START" (find-package "HUNCHENTOOT")))
                             (funcall 'make-instance (find-symbol "EASY-ACCEPTOR" (find-package "HUNCHENTOOT")) :port port)))
-      (aserve (funcall (symbol-function (find-symbol "START" (find-package "NET.ASERVE"))) :port port)))
+      (aserve (funcall (symbol-function (find-symbol "START" (find-package "NET.ASERVE"))) :port port))
+      (t (funcall (symbol-function (find-symbol "START-APP" (find-package "CHAT"))))))
     (loop (sleep 60))))
 
 ;;; This loads the application
